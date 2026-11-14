@@ -1,17 +1,23 @@
 ---
 name: transcript-decisions
 description: >-
-  Turn a conversation transcript into a proposed update of DECISIONS.md and
-  wait for approval before writing. Use when the user provides a transcript,
-  call notes, a chat export, or a recording text and wants decisions,
-  constraints, or open questions logged for coding agents. On the approved
-  write, ensure AGENTS.md contains the one line that tells the executing
-  agent to read Current and Open in full and superseded history from the end.
+  Turn a conversation transcript (or an owner-authored intention page) into
+  proposed business decision records (BDRs) in DECISIONS.md and wait for
+  approval before writing. Use when the user provides a transcript, call notes,
+  a chat export, a recording text, or an intention HTML page and wants product
+  or business decisions, constraints, or open questions logged for coding
+  agents. Not for architecture decision records (ADRs). On the approved write,
+  ensure AGENTS.md contains the one line that tells the executing agent to read
+  Current and Open in full and superseded history from the end.
 ---
 
-# Transcript decisions
+# Transcript decisions (BDRs)
 
-The transcript is evidence. `DECISIONS.md` is the record the executing agent must follow. Show the proposal first. Write files only after the user approves.
+A **BDR** (business decision record) is the product-domain twin of an ADR. `DECISIONS.md` holds BDRs. Technical design choices belong in ADRs, not here.
+
+The transcript (or intention page) is evidence. `DECISIONS.md` is the record the executing agent must follow. Show the proposal first. Write files only after the user approves.
+
+When the user owns the idea and wrote an [intention-spec](https://github.com/djordjep/intention-spec) page first, treat that page as the source the same way you treat a transcript: propose BDR lines distilled from it, wait for approval, then write. Do not invent ADRs. Do not edit the intention HTML unless the user asks for that in a separate step.
 
 ## Files
 
@@ -19,8 +25,8 @@ Use the repo the user names. If they only give a transcript path, use the git ro
 
 | File | Role |
 |---|---|
-| Transcript path the user gave | Source. Read it. Do not copy it into `DECISIONS.md`. |
-| `DECISIONS.md` at that repo root | Binding record: `## Current` and `## Open`. `## Superseded` stays here only while the file is small. |
+| Transcript path or intention page the user gave | Source. Read it. Do not copy it into `DECISIONS.md`. |
+| `DECISIONS.md` at that repo root | Binding BDR log: `## Current` and `## Open`. `## Superseded` stays here only while the file is small. |
 | `DECISIONS-HISTORY.md` at that repo root | Superseded lines after a split. Newest at the bottom. Absent until a split. |
 | `AGENTS.md` at that repo root | Must contain the check line below, once. |
 
@@ -40,7 +46,7 @@ At 200 lines or more:
 
 ## Propose, then stop
 
-1. Read the transcript.
+1. Read the transcript or intention page the user named.
 2. Read `DECISIONS.md`, `DECISIONS-HISTORY.md`, and `AGENTS.md` using the rule above.
 3. Post the proposal in chat. Do not create or edit files in this step.
 4. Wait. On approval, write only the lines the user kept. A correction replaces your wording; it does not approve the rest. "No" writes nothing.
@@ -72,7 +78,7 @@ Skip small talk, status, restatements of a line already marked current, and impl
 - "We should look at SSO someday." — not agreed
 ```
 
-`from:` is the transcript path. If the user pasted the transcript, use `from: chat`.
+`from:` is the transcript path or intention page path. If the user pasted the text, use `from: chat`.
 
 ## Write the approved lines
 
