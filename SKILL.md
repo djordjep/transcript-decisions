@@ -17,7 +17,7 @@ A **BDR** (business decision record) is the product-domain twin of an ADR. `DECI
 
 The transcript (or intention page) is evidence. `DECISIONS.md` is the record the executing agent must follow. Show the proposal first. Write files only after the user approves.
 
-When the user owns the idea and wrote an [intention-spec](https://github.com/djordjep/intention-spec) page first, treat that page as the source the same way you treat a transcript: propose BDR lines distilled from it, wait for approval, then write. Do not invent ADRs. Do not edit the intention HTML unless the user asks for that in a separate step.
+When the user owns the idea and wrote an [intention-spec](https://github.com/djordjep/intention-spec) page first, treat that page as the source the same way you treat a transcript: propose BDR lines distilled from it, wait for approval, then write. Do not invent ADRs (if the picture forces a technical choice, say so and leave it for an ADR). Do not invent an intention page for small or already-clear work. Do not edit the intention HTML unless the user asks for that in a separate step.
 
 ## Files
 
